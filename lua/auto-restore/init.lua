@@ -6,18 +6,12 @@ function M.setup()
 	local lockfile_contents = table.concat(vim.fn.readfile(lockfile_path))
 	local lockfile_table = vim.json.decode(lockfile_contents)
 
-	local to_restore = {}
-	local wg = 0
-
 	local function lazy_done()
 		for plugin, meta in pairs(lockfile_table) do
-			wg = wg + 1
-
 			local commit = meta.commit
 			local path = vim.fn.stdpath("data") .. "/lazy/" .. plugin
 
 			if vim.fn.isdirectory(path) == 0 then
-				wg = wg - 1
 				return
 			end
 
