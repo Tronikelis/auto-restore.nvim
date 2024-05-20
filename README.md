@@ -7,8 +7,11 @@ to the lockfile commit sha, if it is not, it calls `require("lazy").restore()` o
 
 Supports only lazy plugin manager
 
-```
+```lua
 require("lazy").setup({
-    "Tronikelis/auto-restore.nvim"
+    {
+        "Tronikelis/auto-restore.nvim",
+        event = "VeryLazy",
+    }
 })
 ```
